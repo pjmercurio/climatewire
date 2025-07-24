@@ -14,41 +14,55 @@
       background-color: #f7f9fb;
     }
 
+    .container {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 0 1em;
+      background: white;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
     .header-banner {
-      position: relative;
-      width: 100%;
-      overflow: hidden;
+      max-width: 100%;
+      text-align: center;
+      padding: 2em 0 1em;
     }
 
     .header-banner img {
       width: 100%;
+      max-width: 400px;
       height: auto;
       display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
     }
 
-    .overlay-text {
-      position: absolute;
-      bottom: 20px;
-      left: 30px;
-      background: rgba(0, 0, 0, 0.6);
+    .overlay-caption {
+      margin-top: 0.8em;
+      font-size: 0.95em;
+      color: #333;
+    }
+
+    .label {
+      background-color: #5865f2;
       color: white;
-      padding: 15px 20px;
-      max-width: 90%;
-      font-size: 1.2em;
-      border-left: 5px solid #5865f2;
+      font-weight: bold;
+      padding: 0.2em 0.6em;
+      display: inline-block;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4em;
     }
 
     .content {
-      background: white;
-      max-width: 800px;
-      margin: 2em auto;
-      padding: 2em;
-      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+      padding: 1.5em 2em;
     }
 
     h1 {
       color: #1a5e9a;
-      font-size: 1.5em;
+      font-size: 1.4em;
       margin-top: 0;
     }
 
@@ -61,39 +75,30 @@
       width: 100%;
       margin-top: 1em;
     }
-
-    .label {
-      background-color: #5865f2;
-      color: white;
-      font-weight: bold;
-      padding: 0.2em 0.6em;
-      display: inline-block;
-      margin-bottom: 0.5em;
-      font-size: 0.9em;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
   </style>
 </head>
 <body>
 
-  <div class="header-banner">
-    <img src="climatewire.png" alt="Interview Image">
-    <div class="overlay-text">
-      <div class="label">Climatewire</div>
-      Trump speaks out after House slashes NOAA budget deeper than even he proposed
+  <div class="container">
+
+    <div class="header-banner">
+      <img src="climatewire.png" alt="Trump interview image" />
+      <div class="overlay-caption">
+        <span class="label">Climatewire</span> Trump speaks out after House slashes NOAA budget deeper than even he proposed
+      </div>
     </div>
-  </div>
 
-  <div class="content">
-    <div class="label">Climatewire Podcast</div>
-    <h1>NOAA on the Brink?</h1>
-    <p>In this exclusive 4-minute interview, we explore how deep House budget cuts to NOAA and fisheries programs could impact science, sustainability, and America's coastal economy.</p>
+    <div class="content">
+      <div class="label">Climatewire Podcast</div>
+      <h1>NOAA on the Brink?</h1>
+      <p>In this exclusive 4-minute interview, we explore how deep House budget cuts to NOAA and fisheries programs could impact science, sustainability, and America's coastal economy.</p>
 
-    <audio controls>
-      <source src="Paul_Trump_CW_Exclusive.mp3" type="audio/mpeg" />
-      Your browser does not support the audio element.
-    </audio>
+      <audio controls>
+        <source src="Paul_Trump_CW_Exclusive.mp3" type="audio/mpeg" />
+        Your browser does not support the audio element.
+      </audio>
+    </div>
+
   </div>
 
 </body>
