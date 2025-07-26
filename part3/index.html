@@ -1,1 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Climatewire | Image Slideshow</title>
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+    body {
+      margin: 0;
+      font-family: "Helvetica Neue", Arial, sans-serif;
+      background-color: #f7f9fb;
+    }
+
+    .top-banner {
+      height: 120px;
+      background-color: #030E28;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .top-banner img {
+      max-height: 80%;
+      width: auto;
+    }
+
+    .container {
+      max-width: 800px;
+      margin: 2em auto;
+      padding: 0 1em;
+      background: white;
+      box-shadow: 0 0 12px rgba(0,0,0,0.08);
+    }
+
+    .header-banner {
+      max-width: 100%;
+      text-align: center;
+      padding: 2em 0 1em;
+    }
+
+    .header-banner img {
+      width: 100%;
+      max-width: 500px;
+      height: auto;
+      display: block;
+      margin: 0 auto;
+      border-radius: 4px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    }
+
+    .label {
+      background-color: #5865f2;
+      color: white;
+      font-weight: bold;
+      padding: 0.2em 0.6em;
+      display: inline-block;
+      font-size: 0.8em;
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 0.4em;
+    }
+
+    .content {
+      padding: 1.5em 2em;
+    }
+
+    h1 {
+      color: #1a5e9a;
+      font-size: 1.4em;
+      margin-top: 0;
+    }
+
+    p {
+      font-size: 1.1em;
+      color: #333;
+    }
+
+    /* Slideshow */
+    .slideshow-container {
+      position: relative;
+      text-align: center;
+    }
+
+    .main-image {
+      max-width: 100%;
+      max-height: 500px;
+      border-radius: 6px;
+      transition: opacity 0.3s ease;
+    }
+
+    .caption {
+      font-size: 0.95em;
+      color: #555;
+      margin-top: 0.5em;
+    }
+
+    .thumbnails {
+      display: flex;
+      overflow-x: auto;
+      margin-top: 1em;
+      gap: 8px;
+      padding-bottom: 1em;
+    }
+
+    .thumbnails img {
+      height: 60px;
+      cursor: pointer;
+      border-radius: 4px;
+      opacity: 0.6;
+      transition: opacity 0.3s ease, transform 0.2s ease;
+    }
+
+    .thumbnails img.active {
+      opacity: 1;
+      transform: scale(1.05);
+    }
+  </style>
+</head>
+<body>
+
+  <!-- TOP BANNER -->
+  <div class="top-banner">
+    <img src="images/logo.svg" alt="E&E News Logo" />
+  </div>
+
+  <!-- MAIN CONTENT -->
+  <div class="container">
+
+    <div class="content">
+      <div class="label">Climatewire Slideshow</div>
+      <h1>Mock Hearing Concludes Peacefully in La Jolla</h1>
+      <p>A surprisingly civil discourse took place at the hearing this morning in a week where drama was front and center. A huge variety of backgrounds, perspectives, and goals for future fishery management were put on display, but a common thread emerged: almost nobody is on the same page as P.E.T.A.</p>
+
+      <!-- Slideshow -->
+      <div class="slideshow-container">
+        <img id="mainImage" class="main-image" src="slide1.jpg" alt="Slide" />
+        <div class="caption" id="caption">Image 1 caption goes here.</div>
+        <div class="thumbnails" id="thumbnails"></div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const slides = [
+      { src: 'images/1.jpeg', caption: 'From salmon ties to suits - even the most approriate attire could not hide nerves early into the hearing.' },
+      { src: 'images/2.jpeg', caption: 'From salmon ties to suits - even the most approriate attire could not hide nerves early into the hearing.' },
+      { src: 'images/3.jpeg', caption: 'P.E.T.A. member Keenan Murray enjoys a laugh as Syd Tesch narrowly avoids her second shaming of the week.' },
+      { src: 'images/5.jpeg', caption: 'Keenan Murray stages a protest during the first recess.' },
+      { src: 'images/samantha.png', caption: 'Rep. Val Hoyle (D-OR-04) cannot contain her disbelief as the second P.E.T.A. demonstration in 24 hours takes place.' },
+      { src: 'images/6.jpeg', caption: 'Smiles ensue as common ground emerges between esteemed scientists and the fishing community. A concern raised by Rep. Val Hoyle (D-OR-04) during the hearing centered around the need to bring science out of the shadows and into the public eye.' },
+      { src: 'images/7.jpeg', caption: '"I want it bigly." - Rep. Rob Wittman (R-VA-01). The congressman earned consistent laughter with his use of the meme.' },
+      { src: 'images/8.jpeg', caption: '"We want to make sure we have the path forward for young people to be able to get into this industry." - Michael Demarte, Fishing Communities Coalition' },
+      { src: 'images/kat.png', caption: 'P.E.T.A. earns a modest compliment from Rep. Mike Ezell (R-MS-04) on Friday: "I disagree with almost everything you said... but I respect it."' }
+    ];
+
+    const mainImage = document.getElementById('mainImage');
+    const caption = document.getElementById('caption');
+    const thumbnails = document.getElementById('thumbnails');
+
+    slides.forEach((slide, index) => {
+      const thumb = document.createElement('img');
+      thumb.src = slide.src;
+      thumb.alt = `Thumbnail ${index + 1}`;
+      thumb.addEventListener('click', () => showSlide(index));
+      thumbnails.appendChild(thumb);
+    });
+
+    function showSlide(index) {
+      mainImage.style.opacity = 0;
+      setTimeout(() => {
+        mainImage.src = slides[index].src;
+        caption.textContent = slides[index].caption;
+        mainImage.style.opacity = 1;
+
+        document.querySelectorAll('.thumbnails img').forEach((img, i) => {
+          img.classList.toggle('active', i === index);
+        });
+      }, 150);
+    }
+
+    // Show first slide
+    showSlide(0);
+  </script>
+
+</body>
+</html>
 
